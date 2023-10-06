@@ -66,11 +66,19 @@ public class MP4AnalyzerServiceTest {
     }
 
     private List<BoxInfo> createExpectedBoxInfos() {
-        // Create and return the expected BoxInfo list for your test case
-        return List.of(
-                new BoxInfo(32, "ftyp"),
-                new BoxInfo(101871, "moov")
-                // Add more BoxInfo objects as needed
-        );
+
+        BoxInfo b1 = new BoxInfo(181, "moof");
+        BoxInfo b2 = new BoxInfo(17908, "mdat");
+        BoxInfo b3 = new BoxInfo(16, "mfhd");
+        BoxInfo b4 = new BoxInfo(157, "traf");
+        BoxInfo b5 = new BoxInfo(24, "tfhd");
+        BoxInfo b6 = new BoxInfo(20, "trun");
+        BoxInfo b7 = new BoxInfo(44, "uuid");
+        BoxInfo b8 = new BoxInfo(61, "uuid");
+
+        b1.setSubBoxes(List.of(b3, b4));
+        b4.setSubBoxes(List.of(b5, b6, b7, b8));
+
+        return List.of(b1, b2);
     }
 }
